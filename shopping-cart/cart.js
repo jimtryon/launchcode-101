@@ -1,3 +1,5 @@
+const shopItems = [];
+
 function createButton() {
     // target the class of the paragraph to append and save
     var targetElem = $('.cart-button');
@@ -12,26 +14,37 @@ function createButton() {
 }
 
 function addItems() {
-    // target item name and price
-    const shopItems = [];
 
     // trigger on the click of the button
     $(".cart-button").click(function() {
         var name = $(this).prev().prev().text();
-        var price = $(this).prev().text();
-        var total = 0;
+        var price = parseFloat($(this).prev().text().substr(1));
         shopItems.push({name, price});
-        console.log(shopItems[0].price);
 
         // show the information on the page
         var elements = '';
-        elements = elements + '<div>'+name+'</div>' + '<div>'+price+'</div>' +
-        '<div>'+total+'</div>';
+        elements = elements + '<div>'+name+'</div>' + '<div>'+price+'</div>';
         $('.cart').append(elements);
+        totalCart();
     })
+}
+
+function emptyCart() {
+    $('.cart').clear();
+}
+
+function totalCart() {
+    var total = 0;
+
+    for (let elem of shopItems) {
+        total += elem.price;
+    }
+
+    console.log(total);
 }
 
 
 createButton();
 
 addItems();
+
