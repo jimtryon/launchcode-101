@@ -21,6 +21,7 @@ class App extends Component {
     // This binding is necessary to make 'this' work in the callback
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleToggleTodo = this.handleToggleTodo.bind(this);
   }
 
   handleChange(event) {
@@ -44,6 +45,17 @@ class App extends Component {
     });
   }
 
+  handleToggleTodo(index, value) {
+    this.setState({
+      todos: this.state.todos.map((todo, idx) => {
+        if (idx === index) {
+          return Object.assign({}, todo, { isCompleted: value});
+        }
+        return todo;
+      })
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -55,7 +67,9 @@ class App extends Component {
             {this.state.todos.map((todo, index) => {
               return <TodoItem
               key={index}
-              isCompleted={todo.isCompleted}>
+              isCompleted={todo.isCompleted}
+              index={index}
+              onToggleTodo={this.handleToggleTodo}>
               {todo.task}
               </TodoItem>
             })}
