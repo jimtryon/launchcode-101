@@ -41,16 +41,16 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to My TODO List</h2>
         </div>
-        <ul>
-          {this.state.todos.map((todo, index) => <li key={index}>{todo}</li>)}
-        </ul>
-        <input type="text"
-         placeholder="New TODO" 
-         value={this.state.todoToAdd}
-         onChange={this.handleChange}
-         />
-         <button onClick={this.handleClick}>Add TODO</button>
-      </div >
+          <ul>
+            {this.state.todos.map((todo, index) => <li key={index}>{todo}</li>)}
+          </ul>
+          <input type="text"
+          placeholder="New TODO" 
+          value={this.state.todoToAdd}
+          onChange={this.handleChange}
+          />
+          <button onClick={this.handleClick}>Add TODO</button>
+         </div>
     );
   }
 }
