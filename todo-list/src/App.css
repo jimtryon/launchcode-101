@@ -1,10 +1,5 @@
-.App {
-  text-align: center;
-}
+.App {}
 
-.App__ul{
-  margin:auto;
-}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -24,4 +19,13 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+ul {
+  list-style-type: none;
+  padding: 10px;
+}
+
+input[type="text"] {
+  margin-left: 10px;
 }
