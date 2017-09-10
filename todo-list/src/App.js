@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TodoItem from './TodoItem.js';
 import logo from './logo.svg';
 import './App.css';
 
@@ -7,7 +8,13 @@ class App extends Component {
     super(props);
 
     this.state = {
-      todos: [],
+      todos: [{ 
+        task: 'Learn React',
+        isCompleted: true
+      }, {
+        task: 'Do Laundry',
+        isCompleted: true
+      }],
       todoToAdd: ""
     };
 
@@ -25,7 +32,10 @@ class App extends Component {
   }
 
   handleClick(event) {
-    const nextTodos = this.state.todos.concat(this.state.todoToAdd);
+    const nextTodos = this.state.todos.concat({
+      task: this.state.todoToAdd,
+      isCompleted: false // A new TODO isn't completed by default
+    });
     const nextTodoToAdd = '';
 
     this.setState({
@@ -42,7 +52,13 @@ class App extends Component {
           <h2>Welcome to My TODO List</h2>
         </div>
           <ul>
-            {this.state.todos.map((todo, index) => <li key={index}>{todo}</li>)}
+            {this.state.todos.map((todo, index) => {
+              return <TodoItem
+              key={index}
+              isCompleted={todo.isCompleted}>
+              {todo.task}
+              </TodoItem>
+            })}
           </ul>
           <input type="text"
           placeholder="New TODO" 
